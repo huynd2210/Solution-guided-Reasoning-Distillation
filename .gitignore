@@ -1,0 +1,11 @@
+spider_data
+minidev
+.idea
+__pycache__
+bird
+*.py~
+.aider*
+.env
+*.db
+*.zip
+*.json

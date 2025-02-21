@@ -1,0 +1,106 @@
+cache_path: cache
+spider_root_path: spider_data
+bird_root_path: <bird_path>\train\train_databases
+bird_dev_path: <bird_dev_path>\dev_20240627\dev_databases
+bird_minidev_path: minidev\MINIDEV\dev_databases
+
+api_key: <API_KEY>
+#api_key: Uwd9g1UlaZdf1fuN2Hg8UF7RdU7Ay6Wy
+baseurl: "https://openrouter.ai/api/v1" #Use baseurl for OpenAI compatible endpoints
+#baseurl: "https://api.deepinfra.com/v1/openai" #Use baseurl for OpenAI compatible endpoints
+
+
+alpaca_inference_template: |
+  Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.
+
+  ### Instruction:
+  Solve the following sql problem, use <final answer> tag for your final answer:
+  {request}
+  
+  Schema:
+  {schema}
+
+  ### Input:
+
+  ### Response: 
+
+alpaca_instruction_template: | 
+  Solve the following sql problem:
+  {request}
+
+  Schema:
+  {schema}
+
+default_ollama_server: http://localhost:11434/v1
+
+prompt_template_instructor: |
+  Solve the follow sql problem using sqllite:
+  {request}
+  
+  Schema:
+  {schema}
+
+prompt_template: |
+  Solve the follow sql problem/question:
+  {request}
+
+  Schema:
+  {schema}
+
+#  Use <final answer> tag for your final sql query. Only include sql query and no other text in the final answer.
+
+knowledge_distillation_generation_template: |
+    Given sql problem, schema and solution. Come up with logical steps that could have been taken to reach the solution.
+    
+    SQL problem: {problem}
+    Schema: {schema}
+    Solution: {solution}
+  
+    Formulate the reasoning steps as if you were coming up to the steps yourself.
+#    Use <reasoning> tag for your logical reasoning for the SQL query.
+#  Avoid revealing the full solution/answer in the reasoning steps.
+#  Use <final answer> tag for your final answer. Do not include natural language in the final answer.
+
+knowledge_distillation_verification_template: |
+  Given a sql problem, the schema and the logical reasoning steps that would lead to the correct solution,
+  come up with the correct solution in the form of a sql query.
+
+  SQL problem: {problem}
+  Schema: {schema}
+
+  Logical reasoning steps: {reasoning}
+
+  Use <final answer> tag for your final answer. Do not include natural language in the final answer.
+
+#prompt_template_no_reasoning: |
+#  ### Task
+#    You are a specialized AI model in generating SQL queries given user request.
+#    You will be provided with a request and you will be expected to generate a SQL query that will satisfy the request.
+#    You will also be given a schema as well as sample data from the database.
+#
+#    Use <final answer> tag for your final answer. There should only be SQL query in the final answer.
+#
+#    ### Input
+#    {request}
+#
+#    ### Schema
+#    {schema}
+#
+#
+#reasoning_prompt_template: |
+#  ### Task
+#  You are a specialized AI model in generating SQL queries given user request.
+#  You will be provided with a request and you will be expected to generate a SQL query that will satisfy the request.
+#  You will also be given a schema as well as sample data from the database.
+#
+#  Use <reasoning> tag for your logical reasoning for the SQL query.
+#  Use <final answer> tag for your final answer. There should only be SQL query in the final answer.
+#
+#  ### Input
+#  {request}
+#
+#  ### Schema
+#  {schema}
+#
+#
+#
